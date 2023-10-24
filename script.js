@@ -1,27 +1,25 @@
-if (typeof uwuifyPlugin === "undefined") {
-    const uwuifyPlugin = {
-        onMessage: (message) => {
-            if (message.content) {
-                message.content = message.content
-                    .replace(/(?:R|L)/g, 'W')
-                    .replace(/th/g, 'f')
-                    .replace(/TH/g, 'F')
-                    .replace(/you/g, 'u')
-                    .replace(/You/g, 'U')
-                    .replace(/ove/g, 'uv')
-                    .replace(/s/g, 'sh')
-                    .replace(/S/g, 'Sh')
-                    .replace(/\./g, ' uwu.')
-                    .replace(/!/g, ' uwu!')
-                    .replace(/\?/g, ' uwu?');
-            }
-            return message;
-        }
-    };
-
-    window.revoltPlugins = window.revoltPlugins || [];
-    window.revoltPlugins.push(uwuifyPlugin);
-    console.log('uwuifyPlugin has been loaded.');
-} else {
-    console.log('uwuifyPlugin is already loaded. Avoiding redeclaration.');
+// Function to uwuify text
+function uwuify(text) {
+  text = text.replace(/l/g, 'w');
+  text = text.replace(/r/g, 'w');
+  text = text.replace(/L/g, 'W');
+  text = text.replace(/R/g, 'W');
+  return text;
 }
+
+document.addEventListener('keydown', (event) => {
+  const target = event.target;
+
+  // Check if the event occurred in an input or textarea element
+  if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+    const cursorPosition = target.selectionStart;
+    const textBeforeCursor = target.value.slice(0, cursorPosition);
+    const textAfterCursor = target.value.slice(cursorPosition);
+    const uwuifiedText = uwuify(textBeforeCursor) + textAfterCursor;
+    target.value = uwuifiedText;
+
+    // Manually trigger the input event to reflect the change
+    const inputEvent = new Event('input', { bubbles: true, cancelable: true });
+    target.dispatchEvent(inputEvent);
+  }
+});
