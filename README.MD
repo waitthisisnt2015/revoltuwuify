@@ -14,7 +14,7 @@ xhr.onload = function() {
         version: "1.0.0",
         namespace: "waitthisisnt2015",
         id: "uwuify",
-        entrypoint: uwuifyPluginInstance
+        entrypoint: xhr.response
     });
 
     window.location.reload();
