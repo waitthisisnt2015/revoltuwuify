@@ -1,3 +1,7 @@
+PASTE THIS INTO YOUR REVOLT CONSOLE
+
+
+
 const xhr = new XMLHttpRequest();
 xhr.open("GET", "https://codeberg.org/waitthisisnt2015/UWUIFYREVOLTPLUGIN/raw/branch/main/script.js");
 xhr.send("");
